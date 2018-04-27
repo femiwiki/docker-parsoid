@@ -1,7 +1,8 @@
 Dockerized parsoid server
 ========
+[Docker Hub Link](https://hub.docker.com/r/femiwiki/parsoid/)
 
-```
+```shell
 docker build --tag femiwiki/parsoid .
 
 docker run --detach \
