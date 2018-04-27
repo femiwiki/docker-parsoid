@@ -24,16 +24,17 @@ RUN apk add --no-cache curl
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s \
   CMD curl -f http://localhost:8000/_version || exit 1
 
-# Create a new unix user with limited access
-RUN adduser -D parsoid_user
-USER parsoid_user
-WORKDIR /srv/parsoid
-
 # Import prebuilt parsoid and a config file
-COPY --from=0 --chown=parsoid_user:parsoid_user /root/parsoid /srv/parsoid
-COPY localsettings.js .
+COPY --from=0 /root/parsoid /srv/parsoid
+COPY localsettings.js /srv/parsoid/localsettings.js
+
+# Create a new unix user with limited access
+RUN adduser -D parsoid_user &&\
+    chown -R parsoid_user:parsoid_user /srv/parsoid
 
 # Define entrypoint
+USER parsoid_user
 ENV NODE_ENV=production
+WORKDIR /srv/parsoid
 EXPOSE 8000
 ENTRYPOINT ["node", "bin/server.js"]
