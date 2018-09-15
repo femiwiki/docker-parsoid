@@ -1,8 +1,6 @@
-Dockerized parsoid server
+Dockerized parsoid server [![Docker Hub Status]][Docker Hub Link]
 ========
-[Docker Hub Link](https://hub.docker.com/r/femiwiki/parsoid/)
-
-```shell
+```sh
 docker build --tag femiwiki/parsoid .
 
 docker run --detach \
@@ -11,3 +9,6 @@ docker run --detach \
   --publish 80:8000 \
   femiwiki/parsoid
 ```
+
+[Docker Hub Status]: https://badgen.net/docker/pulls/femiwiki/parsoid/?icon=docker&label=pulls
+[Docker Hub Link]: https://hub.docker.com/r/femiwiki/parsoid/
