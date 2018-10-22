@@ -4,7 +4,7 @@
 FROM node:6-alpine
 
 # Download parsoid sources
-ENV PARSOID_VERSION=0.5.3
+ENV PARSOID_VERSION=0.9.0
 ADD https://github.com/wikimedia/parsoid/archive/v${PARSOID_VERSION}.tar.gz /tmp
 RUN tar -xf /tmp/v${PARSOID_VERSION}.tar.gz -C /tmp/ &&\
     mv /tmp/parsoid-${PARSOID_VERSION} /root/parsoid
@@ -26,7 +26,7 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s \
 
 # Import prebuilt parsoid and a config file
 COPY --from=0 /root/parsoid /srv/parsoid
-COPY localsettings.js /srv/parsoid/localsettings.js
+COPY config.yaml /srv/parsoid/config.yaml
 
 # Create a new unix user with limited access
 RUN adduser -D parsoid_user &&\
