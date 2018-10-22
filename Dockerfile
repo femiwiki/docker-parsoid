@@ -1,7 +1,7 @@
 #
 # Build stage
 #
-FROM node:6-alpine
+FROM node:10-alpine
 
 # Download parsoid sources
 ENV PARSOID_VERSION=0.9.0
@@ -12,12 +12,13 @@ WORKDIR /root/parsoid
 
 # Install dependencies
 RUN apk add --no-cache git make gcc g++ python
-RUN npm install --production
+RUN npm install lodash && \
+    npm install --production
 
 #
 # Execution stage
 #
-FROM node:6-alpine
+FROM node:10-alpine
 
 # Enable health check
 RUN apk add --no-cache curl
