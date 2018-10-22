@@ -1,0 +1,16 @@
+# Reference:
+#   https://github.com/wikimedia/parsoid/blob/v0.9.0/config.example.yaml
+
+num_workers: 1
+worker_heartbeat_timeout: 300000
+logging:
+    level: info
+services:
+  - module: lib/index.js
+    entrypoint: apiServiceWorker
+    conf:
+        mwApis:
+          uri: 'https://femiwiki.com/api.php'
+          domain: 'femiwiki.com'
+        useSelser: true
+        serverInterface: '0.0.0.0'
