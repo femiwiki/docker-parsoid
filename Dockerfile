@@ -6,7 +6,7 @@ FROM node:6-alpine
 # Download parsoid sources
 ENV PARSOID_VERSION=0.9.0
 ADD https://github.com/wikimedia/parsoid/archive/v${PARSOID_VERSION}.tar.gz /tmp
-RUN tar -xf /tmp/v${PARSOID_VERSION}.tar.gz -C /tmp/ &&\
+RUN tar -xf /tmp/v${PARSOID_VERSION}.tar.gz -C /tmp/ && \
     mv /tmp/parsoid-${PARSOID_VERSION} /root/parsoid
 WORKDIR /root/parsoid
 
