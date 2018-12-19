@@ -30,4 +30,6 @@ RUN apk del .build-deps
 COPY config.yaml .
 ENV NODE_ENV=production
 EXPOSE 8000
-CMD ["node", "bin/server.js"]
+CMD sed -i 's~MEDIAWIKI_APIS_URI~'"${MEDIAWIKI_APIS_URI:-https://femiwiki.com/api.php}"'~' /srv/parsoid/config.yaml &&\
+    sed -i 's~MEDIAWIKI_APIS_DOMAIN~'"${MEDIAWIKI_APIS_DOMAIN:-femiwiki.com}"'~' /srv/parsoid/config.yaml &&\
+    node bin/server.js

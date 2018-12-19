@@ -10,7 +10,7 @@ services:
     entrypoint: apiServiceWorker
     conf:
         mwApis:
-        - uri: 'https://femiwiki.com/api.php'
-          domain: 'femiwiki.com'
+        - uri: 'MEDIAWIKI_APIS_URI'
+          domain: 'MEDIAWIKI_APIS_DOMAIN'
         useSelser: true
         serverInterface: '0.0.0.0'
