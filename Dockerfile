@@ -10,7 +10,7 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s \
 #
 # Install parsoid
 #
-ARG PARSOID_VERSION=0.9.0
+ARG PARSOID_VERSION=0.10.0
 ADD https://github.com/wikimedia/parsoid/archive/v${PARSOID_VERSION}.tar.gz /tmp/a.tar.gz
 RUN tar -xf /tmp/a.tar.gz -C /tmp/ &&\
       rm /tmp/a.tar.gz &&\
