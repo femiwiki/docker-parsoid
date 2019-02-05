@@ -8,7 +8,7 @@ Dockerized parsoid server [![Docker Hub Status]][Docker Hub Link]
 다음 명령으로 Parsoid를 8000 포트로 열 수 있습니다.
 
 ```sh
-docker run -p 8000:8000 femiwiki/parsoid [-e MEDIAWIKI_APIS_URI=...] [-e MEDIAWIKI_APIS_DOMAIN=...]
+docker run -p 8000:8000 [-e MEDIAWIKI_APIS_URI=...] [-e MEDIAWIKI_APIS_DOMAIN=...] femiwiki/parsoid
 ```
 
 이후 [http://localhost:8000/_version](http://localhost:8000/_version)에 접속하여 작동을 확인해 주세요.
