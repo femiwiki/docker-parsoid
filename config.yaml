@@ -12,5 +12,6 @@ services:
         mwApis:
         - uri: 'MEDIAWIKI_APIS_URI'
           domain: 'MEDIAWIKI_APIS_DOMAIN'
+          prefix: 'MEDIAWIKI_APIS_PREFIX'
         useSelser: true
         serverInterface: '0.0.0.0'

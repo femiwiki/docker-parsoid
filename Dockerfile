@@ -32,4 +32,6 @@ ENV NODE_ENV=production
 EXPOSE 8000
 CMD sed -i 's~MEDIAWIKI_APIS_URI~'"${MEDIAWIKI_APIS_URI:-http://http/api.php}"'~' /srv/parsoid/config.yaml &&\
     sed -i 's~MEDIAWIKI_APIS_DOMAIN~'"${MEDIAWIKI_APIS_DOMAIN:-femiwiki.com}"'~' /srv/parsoid/config.yaml &&\
+    sed -i 's~MEDIAWIKI_APIS_PREFIX~'"${MEDIAWIKI_APIS_PREFIX:-femiwiki}"'~' /srv/parsoid/config.yaml &&\
+    tools/sync-baseconfig.js  --domain "${MEDIAWIKI_APIS_DOMAIN:-femiwiki.com}" --prefix "${MEDIAWIKI_APIS_PREFIX:-femiwiki}" --config &&\
     node bin/server.js
