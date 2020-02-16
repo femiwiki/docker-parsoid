@@ -1,0 +1,17 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  docker_image_job:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@2.12
+      with:
+        name: femiwiki/parsoid
+        username: femiwiki
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        snapshot: true
