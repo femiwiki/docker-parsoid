@@ -10,7 +10,7 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s \
 #
 # Install parsoid
 #
-ARG PARSOID_VERSION=0.10.0
+ARG PARSOID_VERSION=0.11.0
 ADD https://github.com/wikimedia/parsoid/archive/v${PARSOID_VERSION}.tar.gz /tmp/a.tar.gz
 RUN tar -xf /tmp/a.tar.gz -C /tmp/ &&\
       rm /tmp/a.tar.gz &&\
@@ -33,5 +33,8 @@ EXPOSE 8000
 CMD sed -i 's~MEDIAWIKI_APIS_URI~'"${MEDIAWIKI_APIS_URI:-http://http/api.php}"'~' /srv/parsoid/config.yaml &&\
     sed -i 's~MEDIAWIKI_APIS_DOMAIN~'"${MEDIAWIKI_APIS_DOMAIN:-femiwiki.com}"'~' /srv/parsoid/config.yaml &&\
     sed -i 's~MEDIAWIKI_APIS_PREFIX~'"${MEDIAWIKI_APIS_PREFIX:-femiwiki}"'~' /srv/parsoid/config.yaml &&\
-    tools/sync-baseconfig.js  --domain "${MEDIAWIKI_APIS_DOMAIN:-femiwiki.com}" --prefix "${MEDIAWIKI_APIS_PREFIX:-femiwiki}" --config &&\
+    tools/sync-baseconfig.js \
+      --domain "${MEDIAWIKI_APIS_DOMAIN:-femiwiki.com}" \
+      --prefix "${MEDIAWIKI_APIS_PREFIX:-femiwiki}" \
+      --config /srv/parsoid/config.yaml &&\
     node bin/server.js
