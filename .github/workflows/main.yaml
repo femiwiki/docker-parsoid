@@ -19,6 +19,4 @@ jobs:
         name: femiwiki/parsoid
         username: femiwikibot
         password: ${{ secrets.DOCKER_PASSWORD }}
-        tags:
-          - latest
-          - ${{ steps.tag.outputs.tag }}
+        tags: "latest,${{ steps.tag.outputs.tag }}"
