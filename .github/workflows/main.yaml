@@ -7,11 +7,18 @@ jobs:
   docker_image_job:
     runs-on: ubuntu-18.04
     steps:
+
     - uses: actions/checkout@v2
+
+    - id: tag
+      run: echo "::set-output name=tag::$(date +%Y-%m-%dT%H-%M)-$(echo ${{ github.sha }} | cut -c1-8)"
+
     - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@2.12
+      uses: elgohr/Publish-Docker-Github-Action@2.19
       with:
         name: femiwiki/parsoid
         username: femiwikibot
         password: ${{ secrets.DOCKER_PASSWORD }}
-        snapshot: true
+        tags:
+          - latest
+          - ${{ steps.tag.outputs.tag }}
