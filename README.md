@@ -19,7 +19,8 @@ docker run -p 8000:8000 [-e MEDIAWIKI_APIS_URI=...] [-e MEDIAWIKI_APIS_DOMAIN=..
 --|--|--
 MEDIAWIKI_APIS_URI | `http://http/api.php` | 위키의 API path. Container 안에서 접근할 수 있는 것이어야 하며 그러므로 별도로 네트워크 설정을 하지 않는다면`localhost/api.php`와 같은 주소는 사용할 수 없습니다.
 MEDIAWIKI_APIS_DOMAIN | `femiwiki.com` | 위키의 [LocalSettings.php](https://www.mediawiki.org/wiki/Manual:LocalSettings.php)에서 정의한 `$wgVirtualRestConfig['modules']['parsoid']['domain']`과 동일한 값 ([자세한 설명](https://www.mediawiki.org/wiki/Parsoid/Setup#Configuration))
-MEDIAWIKI_APIS_PREFIX | `femiwiki` | [자세한 설명](https://www.mediawiki.org/wiki/Parsoid/Setup#Configuration))
+MEDIAWIKI_APIS_PREFIX | `femiwiki` | [자세한 설명](https://www.mediawiki.org/wiki/Parsoid/Setup#Configuration)
+MEDIAWIKI_LINTING | `false` | [자세한 설명](https://www.mediawiki.org/wiki/Extension:Linter#Configuration_parameters)
 
 ## 빌드
 
