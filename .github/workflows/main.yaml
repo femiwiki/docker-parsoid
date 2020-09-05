@@ -3,20 +3,29 @@ on:
     branches:
       - master
 
+env:
+  IMAGE_NAME: parsoid
+
 jobs:
   docker_image_job:
     runs-on: ubuntu-18.04
+    if: github.event_name == 'push'
     steps:
+      - uses: actions/checkout@v2
 
-    - uses: actions/checkout@v2
+      - name: Build image
+        run: docker build . --tag $IMAGE_NAME
 
-    - id: tag
-      run: echo "::set-output name=tag::$(date +%Y-%m-%dT%H-%M)-$(echo ${{ github.sha }} | cut -c1-8)"
+      - name: Log into GitHub Container Registry
+        run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u femiwiki-bot --password-stdin
 
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@2.19
-      with:
-        name: femiwiki/parsoid
-        username: femiwikibot
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        tags: "latest,${{ steps.tag.outputs.tag }}"
+      - name: Push image to GitHub Container Registry
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+          VERSION=$(date +%Y-%m-%dT%H-%M)-$(echo ${{ github.sha }} | cut -c1-8)
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker tag $IMAGE_NAME $IMAGE_ID:latest
+          docker push $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:latest
