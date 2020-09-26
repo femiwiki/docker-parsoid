@@ -17,4 +17,4 @@ services:
         port: 8000
         linting: MEDIAWIKI_LINTING
         linter:
-            sendAPI: MEDIAWIKI_LINTING
+          sendAPI: MEDIAWIKI_LINTING
