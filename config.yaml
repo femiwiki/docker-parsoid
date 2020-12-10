@@ -1,6 +1,7 @@
 # Reference:
 #   https://github.com/wikimedia/parsoid/blob/v0.9.0/config.example.yaml
 
+num_workers: PARSOID_NUM_WORKERS
 worker_heartbeat_timeout: 300000
 logging:
     level: info
