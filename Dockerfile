@@ -1,4 +1,4 @@
-FROM node:10-alpine
+FROM --platform=$TARGETPLATFORM node:10-alpine
 
 # Environment variables used by Mathoid
 ENV APP_CONFIG_PATH=/srv/parsoid/config.yaml
